@@ -5,71 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Світ домашніх рослин</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <header>
-        <a href="./index.html">Квітниковий куточок</a>
+<body class="font-[Roboto]">
+    <header class="flex justify-between items-center max-w-[1280px] mx-auto p-5 bg-[#f3f7f3] border-b border-[#dcdcdc]">
+        <a href="./index.html" class="text-[20px] font-semibold text-[#2f6f3e]">Квітниковий куточок</a>
         <nav>
-            <ul>
+            <ul class="flex gap-3">
                 <li>
-                    <a href="#about">Про нас</a>
+                    <a href="#about" class="text-[#2f6f3e] hover:underline">Про нас</a>
                 </li>
                 <li>
-                    <a href="#services">Послуги</a>
+                    <a href="#services" class="text-[#2f6f3e] hover:underline">Послуги</a>
                 </li>
                 <li>
-                    <a href="#contacts">Контакти</a>
+                    <a href="#contacts" class="text-[#2f6f3e] hover:underline">Контакти</a>
                 </li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <h1>Світ домашніх рослин</h1>
-            <p>Ми створили цей простір для всіх, хто любить домашні рослини та хоче навчитися правильно за ними
+        <section id="about"
+            class="max-w-[1280px] mx-auto p-5 bg-cover bg-center bg-no-repeat text-white py-[72px] px-[52px]" style="background-image:
+    linear-gradient(rgba(38, 55, 47, 0.7), rgba(38, 55, 47, 0.7)),
+    url('../image/img.webp');">
+            <h1 class="text-3xl font-semibold text-center mb-6">Світ домашніх рослин</h1>
+            <p class="text-lg max-w-[700px] mx-auto mb-2">Ми створили цей простір для всіх, хто любить домашні рослини
+                та хоче
+                навчитися правильно за ними
                 доглядати. У
                 нас ви знайдете корисні поради, ідеї для створення затишного зеленого куточку у своєму домі. </p>
-            <p>Ми віримо що рослини роблять дім затишнішим і гармонійнішим. Навіть кілька квітів можуть змінити
+            <p class="text-lg max-w-[700px] mx-auto">Ми віримо що рослини роблять дім затишнішим і гармонійнішим. Навіть
+                кілька квітів можуть змінити
                 атмосферу та
                 настрій у вашому домі.</p>
-            <a href="#contacts">Перейти до контактів</a>
+            <a href="#contacts"
+                class="block w-fit mx-auto mt-4 py-2.5 px-5 bg-[#2f6f3e] rounded-lg hover:bg-[#245730] transition duration-300">
+                Перейти до контактів</a>
         </section>
 
-        <section id="services">
-            <h2>Наші послуги</h2>
-            <ul>
-                <li>
-                    <h3>Догляд за орхідеями</h3>
+        <section id="services" class="max-w-[1280px] mx-auto p-5">
+            <h2 class="text-center text-[#2f6f3e] text-2xl m-5">Наші послуги</h2>
+            <ul class="space-y-4 mx-auto">
+                <li class="p-4 bg-[#20a066] text-white rounded-lg hover:bg-[#1b7a50] transition">
+                    <h3 class="text-black mb-3 font-semibold">Догляд за орхідеями</h3>
                     <p>Поради щодо поливу, освітлення та правильного догляду за орхідеями.</p>
                 </li>
-                <li>
-                    <h3>Пересадка та оновлення рослин</h3>
+                <li class="p-4 bg-[#20a066] text-white rounded-lg hover:bg-[#1b7a50] transition">
+                    <h3 class="text-black mb-3 font-semibold">Пересадка та оновлення рослин</h3>
                     <p>Допомога у правильній пересадці рослин та підборі ґрунту для їх здорового росту.</p>
                 </li>
-                <li>
-                    <h3>Підбір рослин для дому</h3>
+                <li class="p-4 bg-[#20a066] text-white rounded-lg hover:bg-[#1b7a50] transition">
+                    <h3 class="text-black mb-3 font-semibold">Підбір рослин для дому</h3>
                     <p>Рекомендації щодо вибору рослин відповідно до умов вашого простору.</p>
                 </li>
             </ul>
         </section>
     </main>
 
-    <footer id="contacts">
-        <address>
+    <footer id="contacts" class="max-w-[1280px] mx-auto p-5 text-center bg-[#f3f7f3] border-t border-[#dcdcdc]">
+        <address class="mb-3">
             <p>
                 Email:
-                <a href="mailto:flower@example.com">flower@example.com</a>
+                <a href="mailto:flower@example.com" class="text-[#2f6f3e] hover:underline">flower@example.com</a>
             </p>
             <p>
                 Сайт:
-                <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer"
+                    class="text-[#2f6f3e] hover:underline">
                     Наш сайт
                 </a>
             </p>
         </address>
-        <p>© 2026</p>
+        <p class="text-sm text-black-600">© 2026</p>
     </footer>
 </body>
 
