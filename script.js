@@ -1,15 +1,44 @@
-// Знаходимо всі посилання меню навігації
 const menuLinks = document.querySelectorAll('header nav a');
+const sections = document.querySelectorAll('section, footer');
+const progressBar = document.querySelector('#progressBar');
+const scrollBtn = document.querySelector('#scrollTopBtn');
 
-// console.log(menuLinks);
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
 
-menuLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    menuLinks.forEach((item) => {
-      item.classList.remove('underline', 'font-semibold');
-      // Прибрали активний стан з усіх пунктів меню
-    });
-    link.classList.add('underline', 'font-semibold');
-    //Додали активний стан до того пункту, по якому клікнули
+  if (progressBar) {
+    progressBar.style.width = `${progress}%`;
+  }
+
+  if (scrollTop > 200) {
+    scrollBtn.classList.remove('hidden');
+  } else {
+    scrollBtn.classList.add('hidden');
+  }
+
+  let currentSectionId = '';
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+
+    if (scrollTop >= sectionTop - 160) {
+      currentSectionId = section.getAttribute('id');
+    }
+  });
+
+  menuLinks.forEach((link) => {
+    link.classList.remove('underline', 'font-semibold');
+    if (link.getAttribute('href') === `#${currentSectionId}`) {
+      link.classList.add('underline', 'font-semibold');
+    }
+  });
+});
+
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
   });
 });
