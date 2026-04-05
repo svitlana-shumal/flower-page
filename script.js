@@ -20,13 +20,16 @@ window.addEventListener('scroll', () => {
 
   let currentSectionId = '';
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-
-    if (scrollTop >= sectionTop - 160) {
-      currentSectionId = section.getAttribute('id');
-    }
-  });
+  if (scrollTop >= docHeight - 2) {
+    currentSectionId = 'contacts';
+  } else {
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if (scrollTop >= sectionTop - 160) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+  }
 
   menuLinks.forEach((link) => {
     link.classList.remove('underline', 'font-semibold');
