@@ -19,7 +19,7 @@ function getActiveSection(scrollTop, docHeight) {
   if (scrollTop >= docHeight - 2) {
     return 'contacts';
   }
-  const headerHeight = header.offsetHeight;
+  const headerHeight = header?.offsetHeight || 0;
   let currentSectionId = '';
 
   sections.forEach((section) => {
@@ -63,6 +63,8 @@ function updateUI() {
 
 window.addEventListener('scroll', updateUI);
 
+updateUI();
+
 if (scrollBtn) {
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({
@@ -71,3 +73,89 @@ if (scrollBtn) {
     });
   });
 }
+
+// створили Mock API, далі працюємо з цими даними
+
+const flowers = [
+  { id: 1, name: 'Орхідея', color: 'жовтий' },
+  { id: 2, name: 'Троянда', color: 'червоний' },
+  { id: 3, name: 'Фіалка', color: 'блакитний' },
+  { id: 4, name: 'Спатіфілум', color: 'білий' },
+];
+
+const output = document.getElementById('output');
+
+function fetchFlower(id) {
+  return new Promise((resolve, reject) => {
+    const delay = Math.floor(Math.random() * 1500) + 500;
+
+    setTimeout(() => {
+      const flower = flowers.find((f) => f.id === id);
+      if (flower) {
+        resolve(flower);
+      } else {
+        reject('Квітку не знайдено!');
+      }
+    }, delay);
+  });
+}
+
+function renderFlower(flower, duration) {
+  output.innerText = `✅ Квітка: ${flower.name}, колір: ${flower.color}\n Час: ${duration} ms`;
+}
+
+function renderError(err, duration) {
+  output.innerText = `❌ Помилка: ${err}\n Час: ${duration} ms`;
+}
+
+function renderManyFlowers(flowers) {
+  output.innerText =
+    '✅ Отримані квіти:\n' +
+    flowers.map((flower) => `${flower.name} (${flower.color})`).join('\n');
+}
+
+function renderNoFlowers() {
+  output.innerText = '❌ Жодної квітки не вдалося отримати';
+}
+
+function handleGetFlower() {
+  const start = Date.now();
+  output.innerText = 'Завантаження...';
+
+  const randomId = Math.floor(Math.random() * 5) + 1;
+  fetchFlower(randomId)
+    .then((flower) => {
+      const duration = Date.now() - start;
+      renderFlower(flower, duration);
+    })
+    .catch((err) => {
+      const duration = Date.now() - start;
+      renderError(err, duration);
+    });
+}
+
+function handleGetManyFlowers() {
+  output.innerText = 'Завантаження...';
+
+  Promise.allSettled([fetchFlower(1), fetchFlower(2), fetchFlower(99)]).then(
+    (results) => {
+      const successful = results
+        .filter((r) => r.status === 'fulfilled')
+        .map((r) => r.value);
+
+      if (successful.length > 0) {
+        renderManyFlowers(successful);
+      } else {
+        renderNoFlowers();
+      }
+    }
+  );
+}
+
+document
+  .getElementById('getFlowerBtn')
+  .addEventListener('click', handleGetFlower);
+
+document
+  .getElementById('getManyFlowersBtn')
+  .addEventListener('click', handleGetManyFlowers);
